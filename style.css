@@ -13,7 +13,7 @@ body {
     max-width: 500px;
     background-color: rgba(30, 30, 45, 0.95);
     border-radius: 15px;
-    padding: 75px;
+    padding: 20px;
     text-align: center;
     border: 1px solid rgba(245, 253, 253, 0.3);
 }
@@ -27,7 +27,7 @@ body {
     background-color: #2a2a3a;
     border: 1px solid #eff4f4;
     border-radius: 10px;
-    padding: 35px;
+    padding: 15px;
     margin-bottom: 40px;
     overflow-y: auto;
     text-align: left;
@@ -39,9 +39,9 @@ body {
     margin: 5px 0;
 }
 .user-message {
-     color: #969090; 
-     margin: 5px 0; 
-     font-style: normal;
+    color: #969090; 
+    margin: 5px 0; 
+    font-style: normal;
 }
 .mic-button {
     background-color: #fdfdfd;
@@ -52,6 +52,7 @@ body {
     height: 70px;
     font-size: 2em;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
     margin-bottom: 25px;
 }
 .mic-button:hover {
