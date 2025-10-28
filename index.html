@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vanguard Voice Assist</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -9,10 +12,14 @@
         <header class="assistant-header">
             <h1>Vanguard Voice Assist</h1>
         </header>
+        
+        <div class="info-box">
+            <h2>About Vanguard</h2>
+            <p>I am your dedicated digital companion, built using the Web Speech API. I am optimized for swift interaction, processing your commands instantly right in your browser. Ask me the time, date, or just say hello!</p>
+        </div>
 
-        <div id="conversation-display" class="conversation-display">
-            <p class="assistant-message">Welcome to Vanguard Voice Assistant </p>
-            <p class="assistant-message">Hello I'm ready to listen. Click the mic to begin.</p>
+        <div class="conversation-display" id="conversation-display">
+            <p class="assistant-message">Hello! I'm ready to listen. Click the mic to begin.</p>
         </div>
 
         <button id="mic-button" class="mic-button" onclick="startAssistant()">
@@ -20,7 +27,7 @@
         </button>
 
         <footer class="assistant-footer">
-            <p>Click the mic to start speaking.</p>
+            <p>Click the mic and start speaking.</p>
         </footer>
     </div>
 
