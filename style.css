@@ -1,94 +1,93 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+    height: 100vh;
+    width: 100vw;
     overflow-x: hidden;
-    background: linear-gradient(135deg, #1f1c2c 0%, #05040a 100%);
+}
+
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #f0f0f0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    background: linear-gradient(135deg, #1f1c2c 0%, #05040a 100%);
+    color: #f0f0f0;
 }
-
 .assistant-container {
     width: 100%;
-    height: 100%;
-    max-width: 500px;
+    height: 100vh;
+    background-color: transparent; 
+    border-radius: 0; 
+    padding: 40px 25px; 
+    text-align: center;
+    border: none;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    text-align: center;
-    background-color: transparent;
-    border: none;
 }
-
 .assistant-header h1 {
-    font-size: clamp(1.8em, 6vw, 2.6em);
+    font-size: clamp(2.2em, 7vw, 2.8em); 
     color: #d6e0e0;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    padding-top: 10px;
 }
-
 .conversation-display {
-    flex-grow: 1;
+    flex-grow: 1; 
+    min-height: 350px; 
     background-color: #2a2a3a;
     border: 1px solid #eff4f4;
-    border-radius: 15px;
-    padding: 15px;
-    margin-bottom: 20px;
+    border-radius: 15px; 
+    padding: 20px; 
+    margin-bottom: 30px;
     overflow-y: auto;
     text-align: left;
-    font-size: 1em;
-    color: #e5eae8;
+    font-size: 1.1em; 
+    color: #070707;
 }
-
-/* ✅ Message styling */
 .assistant-message {
     color: #e5eae8;
     font-style: italic;
-    margin: 8px 0;
+    margin: 8px 0; 
 }
 .user-message {
-    color: #c8c8c8;
-    margin: 8px 0;
+    color: #969090; 
+    margin: 8px 0; 
+    font-style: normal;
 }
-
 .mic-button {
     background-color: #fdfdfd;
     color: #1f1c2c;
     border: none;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    font-size: 2.5em;
+    width: 90px;
+    height: 90px;
+    font-size: 3em; 
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
-    margin: 0 auto 15px auto;
+    margin-bottom: 20px;
 }
 .mic-button:hover {
     background-color: #e9f0ed;
 }
 .mic-button:active {
-    transform: scale(0.92);
+    transform: scale(0.9);
 }
-
 .assistant-footer p {
-    font-size: 0.9em;
+    font-size: 1.0em; 
     color: #e8e5e5;
-    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 501px) {
     .assistant-container {
-        height: 90vh;
         border-radius: 15px;
+        height: auto;
+        max-width: 500px; /* Re-apply max-width for desktop/tablet */
+        padding: 25px;
         border: 1px solid rgba(245, 253, 253, 0.3);
-        padding: 30px;
     }
 }
