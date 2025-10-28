@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -5,11 +9,12 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    overflow-x: hidden; 
     background: linear-gradient(135deg, #1f1c2c 0%, #05040a 100%);
     color: #f0f0f0;
 }
 .assistant-container {
-    width: 90%;
+    width: calc(100% - 40px);
     max-width: 500px;
     background-color: rgba(30, 30, 45, 0.95);
     border-radius: 15px;
@@ -18,8 +23,8 @@ body {
     border: 1px solid rgba(245, 253, 253, 0.3);
 }
 .assistant-header h1 {
+    font-size: clamp(1.8em, 5vw, 2.2em);
     color: #d6e0e0;
-    font-size: 2.2em;
     margin-bottom: 25px;
 }
 .conversation-display {
