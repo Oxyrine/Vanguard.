@@ -63,7 +63,7 @@ function startAssistant() {
             console.error('Speech recognition error:', event.error);
             
             isListening = false;
-            micButton.style.backgroundColor = '#dfe6e6ff';
+            micButton.style.backgroundColor = '#00ffff'; 
 
             if (event.error === 'not-allowed') {
                 addMessage('Error: Microphone permission was denied. Please check your browser settings and try again.', true);
