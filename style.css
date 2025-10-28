@@ -6,8 +6,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    align-items: flex-start;
+    height: 100vh;
     margin: 0;
     padding: 0; 
     overflow-x: hidden; 
@@ -16,25 +16,30 @@ body {
 }
 .assistant-container {
     width: 100%;
+    height: 100vh;
     max-width: 500px;
-    background-color: rgba(30, 30, 45, 0.95);
+    background-color: transparent; 
     border-radius: 0; 
-    padding: 15px;
+    padding: 20px 15px;
     text-align: center;
-    border: none; 
+    border: none;
+    display: flex;
+    flex-direction: column;
 }
 .assistant-header h1 {
     font-size: clamp(1.8em, 5vw, 2.2em);
     color: #d6e0e0;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    padding-top: 10px;
 }
 .conversation-display {
-    height: 150px;
+    flex-grow: 1; 
+    min-height: 150px;
     background-color: #2a2a3a;
     border: 1px solid #eff4f4;
     border-radius: 10px;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     overflow-y: auto;
     text-align: left;
     color: #070707;
@@ -51,7 +56,7 @@ body {
 }
 .mic-button {
     background-color: #fdfdfd;
-    color: #e8e8ec;
+    color: #1f1c2c;
     border: none;
     border-radius: 50%;
     width: 70px;
@@ -70,11 +75,14 @@ body {
 .assistant-footer p {
     font-size: 0.95em;
     color: #e8e5e5;
+    margin-bottom: 10px;
 }
 
 @media (min-width: 501px) {
     .assistant-container {
         border-radius: 15px;
+        height: auto;
+        padding: 25px;
         border: 1px solid rgba(245, 253, 253, 0.3);
     }
 }
