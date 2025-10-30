@@ -1,93 +1,81 @@
-// A very new coder's first JS script!
-
-// Step 1: Find the important spots on the HTML page.
-// We use document.getElementById to grab things by their unique ID.
-let theForm = document.getElementById('commandForm');
-let theOutputArea = document.getElementById('output');
-let theInputField = document.getElementById('commandInput');
-
-// Step 2: Set up the welcome message for when the page loads.
-// We store it in a variable so we can use it again later (for 'clear').
-let startingMessage = '<p>Assistant: Ready! Type TIME, YEAR, DATE, or CLEAR.</p>';
-theOutputArea.innerHTML = startingMessage;
-
-// Step 3: Tell the form what function to run when the user clicks 'Send'.
-theForm.addEventListener('submit', runMyAssistant);
-
-// Step 4: This is the main function that does everything!
-function runMyAssistant(event) {
-    
-    // Stop the website from refreshing! This is important for forms.
-    event.preventDefault();
-
-    // Get what the user typed.
-    let userInputText = theInputField.value;
-
-    // Convert the input to lowercase and remove spaces at the ends.
-    // This makes sure 'Time', 'TIME', and 'time ' all work.
-    let cleanCommand = userInputText.trim().toLowerCase();
-    
-    // Make the input box empty again for the next command.
-    theInputField.value = '';
-
-    // We need variables to hold the final messages.
-    let messageForUser = `<strong>User:</strong> ${userInputText}`; // Use the original text here!
-    let messageForAssistant = '';
-    
-    // -------------------------------------------------------------------
-    // CHECKING ALL THE POSSIBLE COMMANDS
-    
-    // First, check for the special command: 'clear'
-    if (cleanCommand === 'clear') {
-        // If it's 'clear', just reset the output area to the starting message.
-        theOutputArea.innerHTML = startingMessage;
+var recognition;
+var isListening = false;
         
-        // Use 'return' to stop the function right here, so we don't run the rest of the code.
-        return; 
+var micButton = document.getElementById('mic-button');
+var display = document.getElementById('conversation-display');
+
+function addMessage(text, isAssistant = false) {
+    var p = document.createElement('p');
+    p.textContent = (isAssistant ? 'Vanguard: ' : 'You: ') + text;
+    p.classList.add(isAssistant ? 'assistant-message' : 'user-message');
+    
+    display.append(p); 
+    display.scrollTop = display.scrollHeight;
+}
+
+function startAssistant() {
+    if (isListening) {
+        recognition.stop();
+        return;
     }
 
-    // Next, check for 'time'
-    else if (cleanCommand === 'time') {
-        // We have to make a new Date object every time to get the current moment.
-        let now = new Date();
+    if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition();
         
-        // This method gets the time nicely formatted.
-        let theCurrentTime = now.toLocaleTimeString(); 
-        
-        messageForAssistant = 'The exact time right now is ' + theCurrentTime + '.';
-    }
+        recognition.continuous = false;
+        recognition.lang = 'en-US';
+        recognition.interimResults = false; 
 
-    // Next, check for 'date'
-    else if (cleanCommand === 'date') {
-        let now = new Date();
+        isListening = true;
+        micButton.style.backgroundColor = 'red';
         
-        // This method gets the day, month, and day number.
-        let theCurrentDate = now.toLocaleDateString(); 
-        
-        messageForAssistant = 'Today\'s date (month/day/year) is ' + theCurrentDate + '.';
-    }
+        recognition.onresult = function(event) {
+            var speechResult = event.results[0][0].transcript;
+            addMessage(speechResult, false);
 
-    // Next, check for 'year'
-    else if (cleanCommand === 'year') {
-        let now = new Date();
-        
-        // This method gets just the four-digit year.
-        let theCurrentYear = now.getFullYear();
-        
-        messageForAssistant = 'We are currently in the year ' + theCurrentYear + '.';
-    }
-    
-    // If none of the above commands were typed, run this last 'else'.
-    else {
-        messageForAssistant = 'I don\'t know that command. Please try TIME, DATE, YEAR, or CLEAR.';
-    }
+            var response = "I do not know that yet. Please ask me about the time, date, or my name.";
+            var cleanInput = speechResult.toLowerCase().trim();
 
-    // -------------------------------------------------------------------
-    
-    // Step 5: Put the final result onto the screen.
-    // We overwrite the whole area with the new user input and the assistant's response.
-    theOutputArea.innerHTML = `
-        <p>${messageForUser}</p>
-        <p><strong>Assistant:</strong> ${messageForAssistant}</p>
-    `;
+            if (cleanInput.includes('hello') || cleanInput.includes('hi')) {
+                response = "Hello there! I am Vanguard, ready to assist!";
+            } else if (cleanInput.includes('time')) {
+                var now = new Date();
+                response = "The current time is " + now.toLocaleTimeString() + ".";
+            } else if (cleanInput.includes('date')) {
+                var today = new Date();
+                response = "Today's date is " + today.toLocaleDateString() + ".";
+            } else if (cleanInput.includes('name')) {
+                response = "I am called Vanguard Voice Assist! Nice to meet you.";
+            } else if (cleanInput.includes('how are you')) {
+                response = "I am a computer program, so I am functioning perfectly, thank you!";
+            }
+
+            addMessage(response, true);
+        };
+
+        recognition.onend = function() {
+            isListening = false;
+            micButton.style.backgroundColor = '#00ffff';
+            console.log('Listening stopped.');
+        };
+
+        recognition.onerror = function(event) {
+            console.error('Speech recognition error:', event.error);
+            
+            isListening = false;
+            micButton.style.backgroundColor = '#00ffff'; 
+
+            if (event.error === 'not-allowed') {
+                addMessage('Error: Microphone permission was denied. Please check your browser settings and try again.', true);
+            } else {
+                addMessage('I had trouble hearing you. Try again!', true);
+            }
+        };
+
+        recognition.start();
+        console.log('Attempting to start listening...');
+
+    } else {
+        addMessage("Vanguard: Error: Your browser does not support the required Web Speech API for voice input.", true);
+    }
 }

@@ -1,20 +1,34 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vanguard Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanguard Voice Assist</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="assistant-container">
-        <h1>🗣️ Vanguard Assistant</h1>
-        
-        <div id="output" class="chat-area">
-            </div>
 
-        <form id="commandForm" class="input-form">
-            <input type="text" id="commandInput" placeholder="Enter command (time/date/year)..." required>
-            <button type="submit">Send Command</button>
-        </form>
+    <div class="assistant-container">
+        <header class="assistant-header">
+            <h1>Vanguard Voice Assist</h1>
+        </header>
+        
+        <div class="info-box">
+            <h2>About Vanguard</h2>
+            <p>I am your dedicated digital companion, built using the Web Speech API. I am optimized for swift interaction, processing your commands instantly right in your browser. Ask me the time, date, or just say hello!</p>
+        </div>
+
+        <div class="conversation-display" id="conversation-display">
+            <p class="assistant-message">Hello! I'm ready to listen. Click the mic to begin.</p>
+        </div>
+
+        <button id="mic-button" class="mic-button" onclick="startAssistant()">
+            🎙️
+        </button>
+
+        <footer class="assistant-footer">
+            <p>Click the mic and start speaking.</p>
+        </footer>
     </div>
 
     <script src="script.js"></script>
