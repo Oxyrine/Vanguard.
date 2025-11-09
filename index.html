@@ -7,31 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    
     <div class="assistant-container">
-        <header class="assistant-header">
-            <h1>Vanguard Voice Assist</h1>
-        </header>
-        
-        <div class="info-box">
-            <h2>About Vanguard</h2>
-            <p>Hey I am the Vanguard Voice Assistant, let me assist you in your daily needs, hit me up with your questions! [TIME YEAR DAY ] for now or just say hello!</p>
+        <div id="history-sidebar" class="history-sidebar">
+            <h3 class="sidebar-title">Recent Chats</h3>
         </div>
 
-        <div class="conversation-display" id="conversation-display">
-            <p class="assistant-message">Hello! I'm ready to listen. Click the mic to begin.</p>
+        <div class="main-content">
+            <header class="assistant-header">
+                <h1>Vanguard Voice Assist</h1>
+            </header>
+            
+            <div class="info-box">
+                <h2>About Vanguard</h2>
+                <p>I am your dedicated digital companion, built using the Web Speech API. I am optimized for swift interaction, processing your commands instantly right in your browser. Ask me the time, date, or just say hello!</p>
+            </div>
+
+            <div class="conversation-display" id="conversation-display">
+                <p class="assistant-message">Hello! I'm ready to listen. Click the mic to begin.</p>
+            </div>
+
+            <button id="mic-button" class="mic-button">
+                🎙️
+            </button>
+
+            <footer class="assistant-footer">
+                <p>Click the mic and start speaking.</p>
+            </footer>
         </div>
-
-        <button id="mic-button" class="mic-button" onclick="startAssistant()">
-            🎙️
-        </button>
-
-        <footer class="assistant-footer">
-            <p>Click the mic and start speaking.</p>
-        </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
-
